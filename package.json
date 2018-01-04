@@ -1,0 +1,13 @@
+{
+  "name": "LambdaSchool_SocialNetwork_Backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Lambda-Social-Network/LambdaSchool_SocialNetwork_Backend.git",
+  "author": "Justin Borek <justinborek@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "mongoose": "^5.0.0-rc1"
+  }
+}
