@@ -6,7 +6,7 @@ const CORS = require('cors');
 const server = express();
 const port = process.env.PORT || 3030;
 
-// const routes = require ('./api/routes/routes');
+const routes = require ('./api/routes/routes');
 
 const corsOptions = {
   origin: '*',
@@ -21,7 +21,7 @@ mongoose.connect('mongodb://localhost/LambdaSchool_SocialNetwork');
 server.use(bodyParser.json());
 server.use(CORS(corsOptions));
 
-// routes(server);
+routes(server);
 
 server.listen(port, () => {
   console.log(`Server running on port ${port}`);

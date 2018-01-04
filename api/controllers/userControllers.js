@@ -3,12 +3,31 @@ const mongoose = require('mongoose');
 const User = require('../models/userModels');
 
 const createUser = (req, res) => {
-  const { email, password, class } = req.body;
-  const newUser = new User({ 
+  const {
+    name,
     email,
     password,
-    class
+    cohort,
+    role,
+    imagePath,
+    aboutMe,
+    location,
+    gitHub,
+    specialty
+  } = req.body;
+  const newUser = new User({ 
+    name,
+    email,
+    password,
+    cohort,
+    role,
+    imagePath,
+    aboutMe,
+    location,
+    gitHub,
+    specialty
   });
+  console.log(newUser);
   newUser
     .save()
     .then(createdUser => res.json(createdUser))
