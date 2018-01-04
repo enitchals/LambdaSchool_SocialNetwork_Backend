@@ -18,15 +18,48 @@ const createPost = (req, res) => {
         });
 };
 
-const listPosts = (req, res) => {
-    Post.find({})
-        .select('text')
-        .exec()
-        .then(posts => {
-            if (posts.length === 0) throw new Error();
+const userPosts = (req, res) => {
+    const { id } = req.params;
+    Post
+        .find({
+            author: id,
+        })
+        .then((posts) => {
             res.json(posts);
         })
-        .catch(err => res.status(STATUS_USER_ERROR).json(err));
+        .catch((err) => {
+            res.status(STATUS_USER_ERROR).json(err);
+            return;
+        });
 };
 
-const findPost = ()
+const addComment = (req, res) => {
+    const { id } = req.params;
+    const { text, author } = req.body;
+    const comment = { author, text };
+    Post.findById(id)
+        .then(post => {
+            if (post === null) throw new Error();
+            const comments = post.comments;
+            comments.push(comment);
+            post
+                .save()
+                .then(newPost => {
+                    Post.findById(newPost._id)
+                        .populate('comments.author', 'username')
+                        .exec((error, savedPost) => {
+                            if (error) {
+                                throw new Error();
+                            }
+                            res.json(savedPost);
+                        });
+                })
+                .catch(err => res.status(STATUS_USER_ERROR).json({ error: 'No such post' }));
+        })
+};
+
+module.exports = {
+    createPost,
+    userPosts,
+    addComment,
+}
