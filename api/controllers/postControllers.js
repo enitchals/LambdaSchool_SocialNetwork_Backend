@@ -5,8 +5,8 @@ const Post = require('../models/postModels.js')
 const STATUS_USER_ERROR = 422;
 
 const createPost = (req, res) => {
-    const {text, author} = req.body;
-    const newPost = new Post({ text, author });
+    const {text, author, imagePath } = req.body;
+    const newPost = new Post({ text, author, imagePath });
     newPost
         .save()
         .then((createdPost) => {
