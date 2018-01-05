@@ -3,10 +3,10 @@ const mongoose = require('mongoose');
 const User = require('../models/userModels');
 
 const createUser = (req, res) => {
+  const password = req.password;
   const {
     name,
     email,
-    password,
     cohort,
     role,
     imagePath,
@@ -35,17 +35,7 @@ const createUser = (req, res) => {
 };
 
 const login = (req, res) => {
-  const { email, password } = req.body;
-  User.findOne({ email, password })
-    .select('email')
-    .exec()
-    .then(user => {
-      if (user === null) {
-        throw new Error();
-      }
-      res.json(user);
-    })
-    .catch(err => res.status(422).json(err));
+  res.json(req.loggedInUser);
 };
 
 const userById = (req, res) => {
