@@ -24,6 +24,8 @@ const userPosts = (req, res) => {
         .find({
             author: id,
         })
+        .populate('author comments.author', 'name')
+        .exec()
         .then((posts) => {
             res.json(posts);
         })

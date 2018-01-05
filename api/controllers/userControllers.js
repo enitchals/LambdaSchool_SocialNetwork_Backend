@@ -34,6 +34,46 @@ const createUser = (req, res) => {
     .catch(err => res.status(422).json(err));
 };
 
+const login = (req, res) => {
+  const { email, password } = req.body;
+  User.findOne({ email, password })
+    .select('email')
+    .exec()
+    .then(user => {
+      if (user === null) {
+        throw new Error();
+      }
+      res.json(user);
+    })
+    .catch(err => res.status(422).json(err));
+};
+
+const userById = (req, res) => {
+  const { id } = req.params;
+  User.findById(id)
+    .select({password: 0})
+    .exec()
+    .then(user => {
+      if (user === null) throw new Error();
+      res.json(user);
+    })
+    .catch(err => res.status(422).json(err));
+};
+
+const users = (req, res) => {
+  User.find({})
+    .select({password: 0})
+    .exec()
+    .then(users => {
+      if (users.length === 0) throw new Error();
+      res.json(users);
+    })
+    .catch(err => res.status(422).json(err));
+};
+
 module.exports = {
-  createUser
+  createUser,
+  login,
+  userById,
+  users
 };

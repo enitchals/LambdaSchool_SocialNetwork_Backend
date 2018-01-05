@@ -14,13 +14,13 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    cohort: {
-        type: String,
-    },
     role: {
         type: String,
         required: true,
         enum: ['student', 'instructor', 'TA', 'graduate'],
+    },
+    cohort: {
+        type: String,
     },
     imagePath: {
         type: String,
