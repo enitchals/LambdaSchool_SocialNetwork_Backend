@@ -16,7 +16,7 @@ const corsOptions = {
 };
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/LambdaSchool_SocialNetwork');
+mongoose.connect('mongodb://lambdasocialnetwork:lambdasocialnetwork@ds239557.mlab.com:39557/lambda-social-network');
 
 server.use(bodyParser.json());
 server.use(CORS(corsOptions));
