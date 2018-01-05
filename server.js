@@ -21,15 +21,6 @@ mongoose.connect('mongodb://lambdasocialnetwork:lambdasocialnetwork@ds239557.mla
 server.use(bodyParser.json());
 server.use(CORS(corsOptions));
 
-server.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
-  );
-  next();
-});
-
 routes(server);
 
 server.listen(port, () => {
