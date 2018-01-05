@@ -12,5 +12,5 @@ module.exports = (app) => {
   app.route('/posts/:id').get(postControllerMethods.userPosts);
   //in the line above, "id" refers to a user ID in mongoDB
   app.route('/posts/:id').post(postControllerMethods.addComment);
-  //in the line above, "id" refers to a comment ID in mongoDB
+  //in the line above, "id" refers to a post ID in mongoDB
 };

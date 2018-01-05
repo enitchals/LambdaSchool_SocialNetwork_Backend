@@ -13,6 +13,9 @@ const CommentSchema = new mongoose.Schema({
 });
 
 const PostSchema = new mongoose.Schema({
+    imagePath: {
+        type: String,
+    },
     text: {
         type: String,
         required: true,
