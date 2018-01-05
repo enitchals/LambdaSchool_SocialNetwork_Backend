@@ -18,17 +18,13 @@ const createPost = (req, res) => {
         });
 };
 
-/*
 const deletePost = (req, res) => {
     const { id } = req.params;
-    Post.findByIdAndRemove(id)
-        .then(post => {
-            if (post === null) throw new Error();
-            res.json(post);
-        })
-        .catch(err => res.status(422).json(err));
+    Post.findByIdAndRemove(id, (err, post) => {
+        res.status(200).json('removed post');
+        return;
+    });
 }
-*/
 
 const userPosts = (req, res) => {
     const { id } = req.params;
@@ -72,8 +68,18 @@ const addComment = (req, res) => {
         })
 };
 
+const deleteComment = (req, res) => {
+    const { id } = req.params;
+    Post.findByIdAndRemove(id, (err, comment) => {
+        res.status(200).json('removed comment');
+        return;
+    });
+}
+
 module.exports = {
     createPost,
     userPosts,
     addComment,
+    deletePost,
+    deleteComment,
 }

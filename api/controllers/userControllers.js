@@ -50,17 +50,13 @@ const userById = (req, res) => {
     .catch(err => res.status(422).json(err));
 };
 
-/*
-const deleteUserById = (req, res) => {
+const deleteUser = (req, res) => {
   const { id } = req.params;
-  User.findByIdAndRemove(id)
-    .then(user => {
-      if (user === null) throw new Error();
-      res.json(user);
-    })
-    .catch(err => res.status(422).json(err));
+  User.findByIdAndRemove(id, (err, user) => {
+      res.status(200).json('removed user');
+      return;
+  });
 }
-*/
 
 const userPicById = (req, res) => {
   const { id } = req.params;
@@ -87,6 +83,7 @@ const users = (req, res) => {
 
 module.exports = {
   createUser,
+  deleteUser,
   login,
   userById,
   users,
