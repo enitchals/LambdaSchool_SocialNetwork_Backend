@@ -18,6 +18,18 @@ const createPost = (req, res) => {
         });
 };
 
+/*
+const deletePost = (req, res) => {
+    const { id } = req.params;
+    Post.findByIdAndRemove(id)
+        .then(post => {
+            if (post === null) throw new Error();
+            res.json(post);
+        })
+        .catch(err => res.status(422).json(err));
+}
+*/
+
 const userPosts = (req, res) => {
     const { id } = req.params;
     Post

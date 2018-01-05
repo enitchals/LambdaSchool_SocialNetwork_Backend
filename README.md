@@ -9,6 +9,12 @@ Logs in when supplied with a matching email and password. Returns the logged in 
 ## GET /users
 Returns a list of all users.
 
+## GET /users/:id
+Returns a specific user object.
+
+## GET /users/:id/pic
+Returns the user profile image for a specific user.
+
 ## POST /posts
 Creates a new post.
 
