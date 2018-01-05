@@ -50,6 +50,30 @@ const userById = (req, res) => {
     .catch(err => res.status(422).json(err));
 };
 
+/*
+const deleteUserById = (req, res) => {
+  const { id } = req.params;
+  User.findByIdAndRemove(id)
+    .then(user => {
+      if (user === null) throw new Error();
+      res.json(user);
+    })
+    .catch(err => res.status(422).json(err));
+}
+*/
+
+const userPicById = (req, res) => {
+  const { id } = req.params;
+  User.findById(id)
+    .select('imagePath')
+    .exec()
+    .then(image => {
+      if(image === null) throw new Error();
+      res.json(image);
+    })
+    .catch(err => res.status(422).json(err));
+};
+
 const users = (req, res) => {
   User.find({})
     .select({password: 0})
@@ -65,5 +89,6 @@ module.exports = {
   createUser,
   login,
   userById,
-  users
+  users,
+  userPicById,
 };
