@@ -18,6 +18,14 @@ const corsOptions = {
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://lambdasocialnetwork:lambdasocialnetwork@ds239557.mlab.com:39557/lambda-social-network');
 
+server.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
+  next();
+});
 server.use(bodyParser.json());
 server.use(CORS(corsOptions));
 
